@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="element">
+            <h1></h1>
+            <button class="takeoff" onclick="takeOff(0)"><</button> 
+            <button class="takeon" onclick="takeOn(0)">></button>
+            <p></p>
+        </div>
+        <div class="element">
+            <h1></h1>
+            <button class="takeoff" onclick="takeOff(1)"><</button> 
+            <button class="takeon" onclick="takeOn(1)">></button>
+            <p></p>
+        </div>
+        <div class="element">
+            <h1></h1>
+            <button class="takeoff" onclick="takeOff(2)"><</button> 
+            <button class="takeon" onclick="takeOn(2)">></button>
+            <p></p>
+        </div>
+        <div class="element">
+            <h1></h1>
+            <button class="takeoff" onclick="takeOff(3)"><</button> 
+            <button class="takeon" onclick="takeOn(3)">></button>
+            <p></p>
+        </div>
+        <div class="element">
+            <h1></h1>
+            <button class="takeoff" onclick="takeOff(4)"><</button> 
+            <button class="takeon" onclick="takeOn(4)">></button>
+            <p></p>
+        </div>
+        <button id="create" onclick="filteredArr()">Большой</button>
+    </div>
+    <script>
+        //Массив с объектами
+        let arr = [
+            {name: 'crosses',
+            count: 0},
+            {name: 'shirts',
+            count: 0},
+            {name: 'jeans',
+            count: 0},
+            {name: 'skirts',
+            count: 0},
+            {name: 'boots',
+            count: 0}
+        ]
+
+        let itemTitle = document.getElementsByTagName('h1');
+        let countScore = document.getElementsByTagName('p');
+
+        //Функции добавления и убавления
+        for(let i = 0; i < arr.length; i++){
+            itemTitle[i].innerHTML = arr[i]['name'];
+            countScore[i].innerHTML = arr[i]['count'];
+        }
+
+        function takeOn(i){
+            arr[i]['count'] = arr[i]['count'] + 1;
+            countScore[i].innerHTML = arr[i]['count'];
+        }
+
+        function takeOff(i){
+            if(arr[i]['count'] != 0){
+                arr[i]['count'] = arr[i]['count'] - 1;
+                countScore[i].innerHTML = arr[i]['count'];
+            } 
+        }
+
+        //Создание нового массива
+        function filteredArr(){
+            a = arr[0]['count'];
+            for(i = 1; i < arr.length; i++){
+                if (arr[i]['count'] > a){
+                    a = arr[i]['count'];
+                    }
+                }
+            let maxElement = arr.find(item => item.count === a);
+            
+            let newArr = arr.filter(function (item){
+                return item != maxElement;
+            })
+            console.log(newArr);
+        }
+    </script>
+</body>
+</html>
